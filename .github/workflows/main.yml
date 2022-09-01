@@ -30,4 +30,5 @@ jobs:
       # run code
       - name: Run code
         run: |
+          go mod tidy
           go run main.go
