@@ -2,7 +2,11 @@ module github.com/yyong-brs/trivy-mirror
 
 go 1.19
 
-require github.com/aquasecurity/trivy v0.31.3
+require (
+	github.com/aquasecurity/trivy v0.31.3
+	github.com/aquasecurity/trivy-db v0.0.0-20220627104749-930461748b63
+	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df
+)
 
 require (
 	cloud.google.com/go v0.100.2 // indirect
@@ -11,7 +15,6 @@ require (
 	cloud.google.com/go/storage v1.14.0 // indirect
 	github.com/VividCortex/ewma v1.1.1 // indirect
 	github.com/aquasecurity/go-dep-parser v0.0.0-20220819065825-29e1e04fb7ae // indirect
-	github.com/aquasecurity/trivy-db v0.0.0-20220627104749-930461748b63 // indirect
 	github.com/aws/aws-sdk-go v1.44.77 // indirect
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/cheggaaa/pb/v3 v3.1.0 // indirect
@@ -55,7 +58,6 @@ require (
 	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f // indirect
 	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df // indirect
 	google.golang.org/api v0.81.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220624142145-8cd45d7dbd1f // indirect
