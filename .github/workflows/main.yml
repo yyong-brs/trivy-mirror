@@ -45,6 +45,7 @@ jobs:
         uses: docker/build-push-action@v3.1.1
         with:
           push: true
+          context: .
           tags: yueyongdada/trivy_ci:latest
           
           
