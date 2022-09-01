@@ -41,6 +41,7 @@ func main() {
 	ctx := context.Background()
 	if err := worker.Update(ctx, catchDir, dbUpdateWg, requestWg); err != nil {
 		fmt.Printf("%+v\n", err)
+		os.Exit(-1)
 	}
 	fmt.Println("Update DB success ......")
 }

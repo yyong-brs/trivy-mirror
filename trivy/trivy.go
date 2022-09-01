@@ -9,6 +9,7 @@ import (
 	"github.com/aquasecurity/trivy/pkg/utils"
 	"golang.org/x/xerrors"
 	"os"
+	"path/filepath"
 	"sync"
 )
 
@@ -51,16 +52,19 @@ func (w dbWorker) hotUpdate(ctx context.Context, cacheDir string, dbUpdateWg, re
 	if err = db.Close(); err != nil {
 		return xerrors.Errorf("failed to close DB: %w", err)
 	}
-	srcPath := db.Path(tmpDir)
-	destPath := db.Path(cacheDir)
-	fmt.Printf("Copy from %s to %s\n", srcPath, destPath)
+	dbSrcPath := db.Path(tmpDir)
+	dbDestPath := filepath.Join(cacheDir, "trivy.db")
+	fmt.Printf("Copy db from %s to %s\n", dbSrcPath, dbDestPath)
 	// Copy trivy.db
-	if _, err = utils.CopyFile(srcPath, destPath); err != nil {
+	if _, err = utils.CopyFile(dbSrcPath, dbDestPath); err != nil {
 		return xerrors.Errorf("failed to copy the database file: %w", err)
 	}
 
+	metadataSrcPath := metadata.Path(tmpDir)
+	metadataDestPath := filepath.Join(cacheDir, "metadata.json")
+	fmt.Printf("Copy metadata from %s to %s\n", metadataSrcPath, metadataDestPath)
 	// Copy metadata.json
-	if _, err = utils.CopyFile(metadata.Path(tmpDir), metadata.Path(cacheDir)); err != nil {
+	if _, err = utils.CopyFile(metadataSrcPath, metadataDestPath); err != nil {
 		return xerrors.Errorf("failed to copy the metadata file: %w", err)
 	}
 
