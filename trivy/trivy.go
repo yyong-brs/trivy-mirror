@@ -51,9 +51,11 @@ func (w dbWorker) hotUpdate(ctx context.Context, cacheDir string, dbUpdateWg, re
 	if err = db.Close(); err != nil {
 		return xerrors.Errorf("failed to close DB: %w", err)
 	}
-
+	srcPath := db.Path(tmpDir)
+	destPath := db.Path(cacheDir)
+	fmt.Printf("Copy from %s to %s", srcPath, destPath)
 	// Copy trivy.db
-	if _, err = utils.CopyFile(db.Path(tmpDir), db.Path(cacheDir)); err != nil {
+	if _, err = utils.CopyFile(srcPath, destPath); err != nil {
 		return xerrors.Errorf("failed to copy the database file: %w", err)
 	}
 
