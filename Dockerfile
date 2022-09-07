@@ -2,6 +2,7 @@ FROM aquasec/trivy:0.31.2
 
 # install curl
 RUN apk add curl
+RUN apk add jq
 
 RUN mkdir -p /root/.cache/trivy/db
 RUN mkdir -p /root/.cache/trivy/fanal
